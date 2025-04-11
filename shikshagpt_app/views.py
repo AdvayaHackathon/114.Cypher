@@ -201,8 +201,8 @@ def get_ai_response(prompt, hf_token=None):
             messages=[
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=500,
-            temperature=0.7,
+            max_tokens=300,
+            temperature=0.5,
             top_p=0.9
         )
         

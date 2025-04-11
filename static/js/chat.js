@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({
                     inputs: prompt,
                     parameters: {
-                        max_length: 1000,
+                        max_length: 300,
                         temperature: 0.7,
                         top_p: 0.9,
                         do_sample: true

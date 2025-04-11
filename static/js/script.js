@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('topic', topic);
         sessionStorage.setItem('proficiency', proficiency);
         
-        // Transition effect before redirect
+
         document.body.classList.add('fade-out');
         
         // Redirect to the chat page
         setTimeout(() => {
-            window.location.href = '/chat/'; // This will be your next page
+            window.location.href = '/chat/';
         }, 300);
     });
     
