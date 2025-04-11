@@ -2,6 +2,9 @@ import json
 import uuid
 import requests
 import re
+from common.ai_service import AIService
+from dotenv import load_dotenv
+import os
 from collections import Counter
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -12,6 +15,9 @@ from django.utils.timezone import localtime
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
 
+load_dotenv()
+
+ai_service = AIService(api_key=os.getenv('HF_API_KEY', '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'))
 def index(request):
     # Serve the landing page
     return render(request, 'shikshagpt_app/index.html')
@@ -201,28 +207,42 @@ def create_ai_prompt(session, message):
     
     return prompt
 
+# def get_ai_response(prompt, hf_token=None):
+#     """
+#     Get a response from the Hugging Face `InferenceClient` chat completion.
+#     """
+#     try:
+#         completion = client.chat.completions.create(
+#             model="mistralai/Mistral-7B-Instruct-v0.3",
+#             messages=[
+#                 {"role": "user", "content": prompt}
+#             ],
+#             max_tokens=300,
+#             temperature=0.5,
+#             top_p=0.9
+#         )
+        
+#         response_text = completion.choices[0].message.content.strip()
+        
+#         return response_text if response_text else "I'm trying to understand. Could you explain that again in a different way?"
+
+#     except Exception as e:
+#         print(f"Error calling Hugging Face API via InferenceClient: {e}")
+#         return "I'm sorry, I'm having trouble connecting. Could you try again later."
+
 def get_ai_response(prompt, hf_token=None):
     """
     Get a response from the Hugging Face `InferenceClient` chat completion.
     """
-    try:
-        completion = client.chat.completions.create(
-            model="mistralai/Mistral-7B-Instruct-v0.3",
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=300,
-            temperature=0.5,
-            top_p=0.9
-        )
-        
-        response_text = completion.choices[0].message.content.strip()
-        
-        return response_text if response_text else "I'm trying to understand. Could you explain that again in a different way?"
-
-    except Exception as e:
-        print(f"Error calling Hugging Face API via InferenceClient: {e}")
-        return "I'm sorry, I'm having trouble connecting. Could you try again later."
+    # Use the shared service but maintain the same behavior
+    return ai_service.generate_response(
+        prompt=prompt, 
+        topic="",  # This parameter is mainly for the Telegram bot
+        max_tokens=300,
+        temperature=0.5,
+        top_p=0.9,
+        model="mistralai/Mistral-7B-Instruct-v0.3"
+    )
 
 def calculate_confidence(ai_response, topic):
     """
