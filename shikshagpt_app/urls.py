@@ -9,5 +9,5 @@ urlpatterns = [
     path('api/sessions/', views.get_sessions, name='get_sessions'),
     path('api/sessions/<str:session_id>/messages/', views.get_session_messages, name='get_session_messages'),
     path('chat/', views.chat, name='chat'),
-    
+    path('chats/', views.chats, name='chats'),
 ]

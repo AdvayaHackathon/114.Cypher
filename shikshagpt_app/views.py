@@ -8,6 +8,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Session, Message
 from huggingface_hub import InferenceClient
+from django.utils.timezone import localtime
+from django.conf import settings
+from django.shortcuts import render, get_object_or_404
 
 def index(request):
     # Serve the landing page
@@ -16,6 +19,10 @@ def index(request):
 def chat(request):
     # Serve the chat page
     return render(request, 'shikshagpt_app/chat.html')
+
+def chats(request):
+    """View for the chat history page"""
+    return render(request, 'shikshagpt_app/chats.html')
 
 client = InferenceClient(
     provider="hf-inference",
@@ -98,23 +105,26 @@ def chat_api(request):
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 def get_sessions(request):
-    """
-    Retrieve all previous sessions.
-    """
     try:
-        # Get all sessions ordered by creation date (newest first)
         sessions = Session.objects.all().order_by('-created_at')
-        
-        # Format sessions for the frontend
-        sessions_data = []
+        seen_topics = set()
+        unique_sessions = []
+
         for session in sessions:
-            sessions_data.append({
-                'id': session.session_id,
-                'topic': session.topic,
-                'proficiency': session.proficiency,
-                'created_at': session.created_at.strftime("%Y-%m-%d %H:%M")
-            })
-        
+            if session.topic.lower() not in seen_topics:
+                unique_sessions.append(session)
+                seen_topics.add(session.topic.lower())
+
+        sessions_data = [
+            {
+                'id': s.session_id,
+                'topic': s.topic,
+                'proficiency': s.proficiency,
+                'created_at': localtime(s.created_at).isoformat()
+            }
+            for s in unique_sessions
+        ]
+
         return JsonResponse({'sessions': sessions_data})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
