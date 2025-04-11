@@ -18,6 +18,7 @@
             </div>
             <div class="nav-links">
                 <a href="#" class="active">Home</a>
+                <button id="chatBtn" class="chat-btn">Chat</button>
                 <a href="#">About</a>
                 <a href="#">How it Works</a>
             </div>
@@ -71,7 +72,14 @@
             </div>
         </section>
     </div>
+    <script>
+        
+    document.getElementById("chatBtn").addEventListener("click", function() {
+        window.location.href = "{% url 'chat' %}";
+    });
 
+
+    </script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

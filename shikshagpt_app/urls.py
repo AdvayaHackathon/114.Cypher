@@ -8,4 +8,6 @@ urlpatterns = [
     path('api/start_session/', views.start_session, name='start_session'),
     path('api/sessions/', views.get_sessions, name='get_sessions'),
     path('api/sessions/<str:session_id>/messages/', views.get_session_messages, name='get_session_messages'),
+    path('chat/', views.chat, name='chat'),
+    
 ]
