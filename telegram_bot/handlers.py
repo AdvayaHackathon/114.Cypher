@@ -20,7 +20,6 @@ logger = logging.getLogger(__name__)
 
 # Initialize AI service
 
-
 # Create async wrappers for database operations
 create_session_async = sync_to_async(SessionService.create_session)
 get_session_async = sync_to_async(SessionService.get_session)
