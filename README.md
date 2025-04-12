@@ -4,6 +4,15 @@
 
 EduEcho is an educational web application designed to help students learn by teaching concepts to an AI student. It follows the powerful pedagogical principle that explaining concepts to others is one of the most effective ways to reinforce your own understanding.
 
+## Team Members
+
+Team Number - E28
+
+Aashish A Koundinya
+Bharadwaj Balaji
+Bhuvan G S
+Rahul Rajasekharan Menon
+
 ## Tech Stack
 
 Last run on these versions
