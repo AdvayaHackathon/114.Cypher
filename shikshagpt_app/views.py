@@ -207,29 +207,6 @@ def create_ai_prompt(session, message):
     
     return prompt
 
-# def get_ai_response(prompt, hf_token=None):
-#     """
-#     Get a response from the Hugging Face `InferenceClient` chat completion.
-#     """
-#     try:
-#         completion = client.chat.completions.create(
-#             model="mistralai/Mistral-7B-Instruct-v0.3",
-#             messages=[
-#                 {"role": "user", "content": prompt}
-#             ],
-#             max_tokens=300,
-#             temperature=0.5,
-#             top_p=0.9
-#         )
-        
-#         response_text = completion.choices[0].message.content.strip()
-        
-#         return response_text if response_text else "I'm trying to understand. Could you explain that again in a different way?"
-
-#     except Exception as e:
-#         print(f"Error calling Hugging Face API via InferenceClient: {e}")
-#         return "I'm sorry, I'm having trouble connecting. Could you try again later."
-
 def get_ai_response(prompt, hf_token=None):
     """
     Get a response from the Hugging Face `InferenceClient` chat completion.

@@ -395,6 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load previous sessions
     loadSessions();
 });
+
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const chatContainer = document.getElementById('chat-container');

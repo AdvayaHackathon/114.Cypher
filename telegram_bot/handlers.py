@@ -19,7 +19,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Initialize AI service
-ai_service = AIService(api_key=os.getenv('HF_API_KEY', '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'))
+
 
 # Create async wrappers for database operations
 create_session_async = sync_to_async(SessionService.create_session)
