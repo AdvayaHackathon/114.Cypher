@@ -8,10 +8,10 @@ EduEcho is an educational web application designed to help students learn by tea
 
 Team Number - E28
 
-Aashish A Koundinya
-Bharadwaj Balaji
-Bhuvan G S
-Rahul Rajasekharan Menon
+- Aashish A Koundinya
+- Bharadwaj Balaji
+- Bhuvan G S
+- Rahul Rajasekharan Menon
 
 ## Tech Stack
 

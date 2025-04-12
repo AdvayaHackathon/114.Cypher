@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store the data in sessionStorage for access on the next page
         sessionStorage.setItem('topic', topic);
         sessionStorage.setItem('proficiency', proficiency);
-    
+        
 
         document.body.classList.add('fade-out');
         
